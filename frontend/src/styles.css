@@ -28,3 +28,5 @@ th { background:var(--brown); color:var(--cream); text-align:left; } th, td { pa
 .row { display:flex; align-items:center; gap:12px; margin:8px 0; } .row span { width:90px; font-weight:bold; }
 .stat { text-align:center; } .stat strong { display:block; font-size:2.2rem; } .stat span { text-transform:capitalize; }
 @media (max-width:600px) { .nav { flex-direction:column; } .nav nav a { margin:0 4px; } }
+.demo { background:var(--yellow); color:var(--brown); border-bottom:2px solid var(--brown); padding:8px 16px; text-align:center; font-size:.85rem; font-weight:bold; }
+.demo button { font:inherit; margin-left:8px; border:2px solid var(--brown); border-radius:12px; background:#fff; color:var(--brown); cursor:pointer; padding:1px 10px; }
