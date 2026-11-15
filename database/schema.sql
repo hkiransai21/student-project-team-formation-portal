@@ -1,0 +1,17 @@
+-- MySQL schema (matches the JPA entities). Run: mysql -u root -p < database/schema.sql
+CREATE DATABASE IF NOT EXISTS portal;
+USE portal;
+CREATE TABLE IF NOT EXISTS mentor (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, department VARCHAR(255), max_teams INT NOT NULL DEFAULT 3);
+CREATE TABLE IF NOT EXISTS project (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(120) NOT NULL, description VARCHAR(1000), domain VARCHAR(255) NOT NULL,
+  required_skills VARCHAR(255), status VARCHAR(255), mentor_id BIGINT, FOREIGN KEY (mentor_id) REFERENCES mentor(id));
+CREATE TABLE IF NOT EXISTS team (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, max_size INT NOT NULL DEFAULT 4, project_id BIGINT,
+  FOREIGN KEY (project_id) REFERENCES project(id));
+CREATE TABLE IF NOT EXISTS student (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL UNIQUE, skills VARCHAR(255), team_id BIGINT,
+  FOREIGN KEY (team_id) REFERENCES team(id));
+CREATE TABLE IF NOT EXISTS milestone (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY, title VARCHAR(255) NOT NULL, due_date DATE, status VARCHAR(255), project_id BIGINT,
+  FOREIGN KEY (project_id) REFERENCES project(id));
